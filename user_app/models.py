@@ -9,6 +9,7 @@ User = get_user_model()
 # Create your models here.
 class UserProfile(models.Model):
     CITY = [
+        ('none', 'none'),
         ('nur-sultan', 'Nur-Sultan')
     ]
     GENDER = [
@@ -54,7 +55,7 @@ class UserProfile(models.Model):
     city = models.CharField(
         max_length=20,
         choices=CITY,
-        default='nur-sultan'
+        default='none'
     )
     time_created = models.DateTimeField(
         auto_now_add=True,
