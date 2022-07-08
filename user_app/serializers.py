@@ -4,7 +4,11 @@ from .models import UserProfile
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    password_verify = serializers.CharField(write_only=True, style={'input-type': 'password'})
+    password_verify = serializers.CharField(
+        write_only=True, style={
+            'input-type': 'password'
+        }
+    )
 
     class Meta:
         model = User
