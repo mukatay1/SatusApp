@@ -27,6 +27,8 @@ class Targets(models.Model):
         default=False,
     )
 
-    @classmethod
-    def children(cls):
-        return cls.objects.filter(parent=cls)
+    def __str__(self):
+        return self.name
+
+    def children(self):
+        return Targets.objects.filter(parent=self)
