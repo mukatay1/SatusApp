@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
 
+from targets.models import Targets
+
 User = get_user_model()
 
 
@@ -21,46 +23,55 @@ class UserProfile(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='profile',
-        primary_key=True
+        primary_key=True,
 
     )
     name = models.CharField(
         max_length=100,
         blank=True,
-        null=True
+        null=True,
     )
     surname = models.CharField(
         max_length=100,
         blank=True,
-        null=True
+        null=True,
     )
     birth = models.DateField(
         blank=True,
-        null=True
+        null=True,
     )
     gender = models.CharField(
         max_length=6,
         choices=GENDER,
-        default='none'
+        default='none',
     )
     phone = models.CharField(
         max_length=11,
         blank=True,
-        null=True
+        null=True,
     )
     image = CloudinaryField(
         'image',
-        blank=True
+        blank=True,
     )
     city = models.CharField(
         max_length=20,
         choices=CITY,
-        default='none'
+        default='none',
     )
     time_created = models.DateTimeField(
         auto_now_add=True,
     )
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(
+        unique=True,
+    )
+    targets = models.ForeignKey(
+        Targets,
+        on_delete=models.CASCADE,
+        related_name='profile_target',
+        blank=True,
+        null=True,
+    )
 
     def save(self, *args, **kwargs):
         self.slug = slugify(str(self.user))

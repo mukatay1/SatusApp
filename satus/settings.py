@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'targets.apps.TargetsConfig',
     'user_app.apps.UserAppConfig',
 
     "corsheaders",
