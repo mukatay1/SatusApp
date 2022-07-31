@@ -1,0 +1,16 @@
+.idea/
+.pycharm/
+
+__pycache__/
+
+db.sqlite3
+local.py
+prod.py
+.env
+
+*.log
+*.pot
+*.py[cod]
+
+media/**
+!media/
